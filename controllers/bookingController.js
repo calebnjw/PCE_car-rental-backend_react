@@ -7,10 +7,13 @@ class BookingController extends BaseController {
 
   async getBookings(req, res) {
     const { email } = req.body;
+    console.log('GETTING BOOKINGS', email);
 
     try {
       // search for bookings on db using email address
       const bookings = await this.model.findAll({ where: { email } });
+
+      console.log('GOT BOOKINGS', bookings);
 
       return res.status(200).json({ bookings });
     } catch (err) {
@@ -25,24 +28,28 @@ class BookingController extends BaseController {
       // search for bookings on db using id
       const booking = await this.model.findOne({ where: { id } });
 
-      return res.status(200).json({ booking });
+      return res.status(200).json(booking);
     } catch (err) {
-      return res.status(401).json({ err: err.message });
+      return res.status(401).json({ notFound: true, err: err.message });
     }
   }
 
   async newBooking(req, res) {
+    console.log('NEW BOOKING');
     const {
       carId, startDate, endDate, email, firstName, lastName,
     } = req.body;
 
     try {
       // search for bookings on db using id
-      await this.model.create({
+      console.log('MAKE NEW');
+      const { booking } = await this.model.create({
         carId, startDate, endDate, email, firstName, lastName,
       });
 
-      return res.status(200).json({ success: true });
+      console.log('NEW BOOKING', booking);
+
+      return res.status(200).json({ booking });
     } catch (err) {
       return res.status(401).json({ err: err.message });
     }

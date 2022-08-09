@@ -14,7 +14,7 @@ const CarController = require('./controllers/carController.js');
 const BookingController = require('./controllers/bookingController.js');
 
 const carController = new CarController(db.Car, db);
-const bookingController = new BookingController(db.Car, db);
+const bookingController = new BookingController(db.Booking, db);
 
 const CarRouter = require('./routers/carRouter.js');
 const BookingRouter = require('./routers/bookingRouter.js');

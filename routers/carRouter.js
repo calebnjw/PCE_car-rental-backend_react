@@ -9,7 +9,7 @@ class CarRouter {
 
   router() {
     router.get('/', this.controller.getCars.bind(this.controller));
-    // router.get('/:id', this.controller.getCar.bind(this.controller));
+    router.get('/:id', this.controller.getCar.bind(this.controller));
 
     return router;
   }
