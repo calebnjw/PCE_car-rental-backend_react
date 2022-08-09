@@ -8,7 +8,7 @@ class CarController extends BaseController {
   async getCars(request, response) {
     try {
       // display all cars from db
-      const cars = await this.model.findAll({ limit: 20 });
+      const cars = await this.model.findAll({ limit: 5 });
 
       return response.status(200).json(cars);
     } catch (err) {
